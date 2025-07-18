@@ -36,7 +36,7 @@
             --card-radius: 24px;
             --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --transition: all 0.3s ease;
-            --slide-text-color: #3b82f6; /* New: Specific color for slide animation */
+            --slide-text-color: #3b82f6;
         }
 
         * {
@@ -50,7 +50,6 @@
             background: var(--light-bg);
             color: var(--light-text);
             overflow-x: hidden;
-            /* Modern Background Design */
             background-image:
                 radial-gradient(circle at 80% 10%, rgba(99, 102, 241, 0.1) 0%, transparent 25%),
                 radial-gradient(circle at 20% 90%, rgba(139, 92, 246, 0.1) 0%, transparent 25%),
@@ -262,15 +261,15 @@
             display: inline-block;
             overflow: hidden;
             vertical-align: middle;
-            height: 1.2em; /* Adjust based on your font size */
-            color: var(--slide-text-color); /* Apply the specific color */
+            height: 1.2em;
+            color: var(--slide-text-color);
             font-weight: bold;
-            text-shadow: none; /* Remove text shadow for this part */
+            text-shadow: none;
         }
 
         .slide-text {
             display: block;
-            animation: slideUp 8s infinite; /* Adjust duration and timing as needed */
+            animation: slideUp 8s infinite;
             line-height: 1.2em;
         }
 
@@ -467,13 +466,20 @@
             flex: 0.5;
             min-width: 200px;
             padding: 0.9rem 1.25rem;
-            border-radius: var(--border-radius);
+            border-radius: 8px; /* Slightly less rounded than 50px for select */
             border: 1px solid rgba(0,0,0,0.1);
             font-size: 1rem;
             background: var(--light-bg);
             color: var(--light-text);
             transition: var(--transition);
             appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236366f1%22%20d%3D%22M287%2C197.398l-14.39-14.39l-117.84-117.84c-3.12-3.12-8.192-3.12-11.312%2C0L14.39%2C182.99l-14.39%2C14.39c-3.12%2C3.12-3.12%2C8.192%2C0%2C11.312l14.39%2C14.39c3.12%2C3.12%2C8.192%2C3.12%2C11.312%2C0l117.84-117.84l117.84%2C117.84c3.12%2C3.12%2C8.192%2C3.12%2C11.312%2C0l14.39-14.39C290.12%2C205.59%2C290.12%2C200.518%2C287%2C197.398z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+            background-repeat: no-repeat;
+            background-position: right 1.25rem center;
+            background-size: 0.8em;
+            padding-right: 2.5rem; /* Make space for the arrow */
         }
 
         body.dark-mode #categoryFilter {
@@ -593,7 +599,7 @@
         }
 
         .tool-card:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            transform: translateY(-10px) rotateX(2deg) rotateY(2deg); /* Less aggressive rotation */
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
@@ -904,6 +910,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            white-space: nowrap; /* Prevent wrapping on smaller screens */
         }
 
         .admin-tab.active {
@@ -941,6 +948,11 @@
             padding: 1rem;
             text-align: left;
             border-bottom: 1px solid rgba(0,0,0,0.1);
+            word-break: break-word; /* Prevent long words from breaking layout */
+        }
+
+        .admin-table td:last-child {
+            white-space: nowrap; /* Keep buttons together */
         }
 
         body.dark-mode .admin-table th,
@@ -1028,6 +1040,11 @@
             left: 50%;
             margin-top: -25px;
             margin-left: -25px;
+            transform-origin: center center;
+            z-index: 100; /* Ensure loader is on top */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         @keyframes rotation {
@@ -1188,6 +1205,10 @@
 
             .admin-tabs {
                 flex-wrap: wrap;
+            }
+
+            .admin-tab {
+                flex-basis: auto; /* Allow tabs to shrink */
             }
 
             .add-tool-form {
@@ -1627,13 +1648,13 @@
     <script>
         // Firebase configuration (YOUR CONFIG)
         const firebaseConfig = {
-            apiKey: "AIzaSyA4tZJUjHDZ0JAh394flCqL6SSu8GoVskA",
-            authDomain: "modhusudhan-c8300.firebaseapp.com",
-            projectId: "modhusudhan-c8300",
-            storageBucket: "modhusudhan-c8300.firebasestorage.app",
-            messagingSenderId: "884138452056",
-            appId: "1:884138452056:web:1cb1481d42337c6af2962d",
-            measurementId: "G-0D30XWCLB0"
+            apiKey: "AIzaSyA4tZJUjHDZ0JAh394flCqL6SSu8GoVskA", // Replace with your actual API Key
+            authDomain: "modhusudhan-c8300.firebaseapp.com", // Replace with your actual Auth Domain
+            projectId: "modhusudhan-c8300", // Replace with your actual Project ID
+            storageBucket: "modhusudhan-c8300.firebasestorage.app", // Replace with your actual Storage Bucket
+            messagingSenderId: "884138452056", // Replace with your actual Messaging Sender ID
+            appId: "1:884138452056:web:1cb1481d42337c6af2962d", // Replace with your actual App ID
+            measurementId: "G-0D30XWCLB0" // Replace with your actual Measurement ID (if using Analytics)
         };
 
         // Initialize Firebase
@@ -1642,9 +1663,9 @@
         const auth = firebase.auth();
 
         // Your specific admin UID - REPLACE WITH YOUR ACTUAL ADMIN UID
+        // You can find this in Firebase Authentication -> Users when logged in with your admin account.
         const ADMIN_UID = "MlSPd5BzwdQqgGH8oFuGZ1jiQZC2";
 
-        // Page state management
         let currentPage = 'main'; // Default page
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -1657,9 +1678,8 @@
                 slideTextElement.textContent = slideTexts[currentSlideIndex];
                 currentSlideIndex = (currentSlideIndex + 1) % slideTexts.length;
             }
-            updateSlideText(); // Initial text set
-            setInterval(updateSlideText, 4000); // Change text every 4 seconds (adjust animation-duration in CSS too)
-
+            updateSlideText();
+            setInterval(updateSlideText, 4000);
 
             // Initialize Lottie animation
             const animationContainer = document.getElementById('lottie-animation');
@@ -1668,7 +1688,7 @@
                 renderer: 'svg',
                 loop: true,
                 autoplay: true,
-                path: 'https://lottie.host/804f8263-875b-433c-ac01-c3098f48dfc4/3N3q97qfUo.json' // AI logo animation
+                path: 'https://lottie.host/804f8263-875b-433c-ac01-c3098f48dfc4/3N3q97qfUo.json'
             });
 
             // Create particle effect
@@ -1758,7 +1778,7 @@
             }
 
             window.addEventListener('hashchange', handleHashChange);
-            handleHashChange();
+            handleHashChange(); // Call once on page load to check initial hash
 
             // Admin login form submission
             document.getElementById('adminLoginForm').addEventListener('submit', loginAdmin);
@@ -1770,8 +1790,9 @@
 
         function createParticles() {
             const container = document.getElementById('particles');
-            const count = 30;
+            if (!container) return; // Add a check if container doesn't exist
 
+            const count = 30;
             for (let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
@@ -1794,16 +1815,34 @@
         }
 
         // --- Data Loading Functions for Main Page ---
-        function loadCategories() {
-            const categoriesGrid = document.querySelector('.categories-grid');
-            categoriesGrid.innerHTML = '<div class="loader"></div>'; // Show loader
+        function showLoader(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = '<div class="loader-wrapper" style="display: flex; justify-content: center; align-items: center; min-height: 150px;"><div class="loader"></div></div>';
+            }
+        }
 
-            db.collection("categories").get().then((querySnapshot) => {
-                categoriesGrid.innerHTML = ''; // Clear loader/previous content
+        function removeLoader(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = '';
+            }
+        }
+
+        async function loadCategories() {
+            const categoriesGrid = document.querySelector('.categories-grid');
+            showLoader('categories'); // Show loader on the categories grid
+
+            try {
+                const querySnapshot = await db.collection("categories").get();
+                removeLoader('categories'); // Remove loader
+
                 if (querySnapshot.empty) {
-                    categoriesGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">No categories available yet.</p>';
+                    categoriesGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">No categories available yet. Add some from the admin panel!</p>';
+                    return;
                 }
 
+                categoriesGrid.innerHTML = ''; // Clear existing content
                 querySnapshot.forEach((doc, index) => {
                     const category = doc.data();
                     const categoryCard = document.createElement('div');
@@ -1813,33 +1852,36 @@
                         <h3 class="category-name">${category.name}</h3>
                         <div class="category-count">${category.toolCount || 0}+ Tools</div>
                     `;
-                    // Add event listener to filter tools by category when clicked
                     categoryCard.addEventListener('click', () => {
                         document.getElementById('categoryFilter').value = category.name;
                         filterTools();
-                        // Optionally scroll to tools section
                         document.getElementById('tool-grid-section').scrollIntoView({ behavior: 'smooth' });
                     });
                     categoriesGrid.appendChild(categoryCard);
                 });
-                updateCategoryFilterDropdown(); // Update category filters after loading
-                updateToolCategoryDropdown(); // Update dropdown for add tool form
-            }).catch((error) => {
+                updateCategoryFilterDropdown();
+                updateToolCategoryDropdown();
+            } catch (error) {
                 console.error("Error loading categories:", error);
+                removeLoader('categories');
                 categoriesGrid.innerHTML = '<p class="error" style="text-align: center; color: red; grid-column: 1 / -1;">Error loading categories. Please try again later.</p>';
-            });
+            }
         }
 
-        function loadTools() {
+        async function loadTools() {
             const toolGrid = document.getElementById('tool-grid');
-            toolGrid.innerHTML = '<div class="loader"></div>'; // Show loader
+            showLoader('tool-grid-section'); // Show loader on the tool grid section
 
-            db.collection("tools").get().then((querySnapshot) => {
-                toolGrid.innerHTML = ''; // Clear loader/previous content
+            try {
+                const querySnapshot = await db.collection("tools").get();
+                removeLoader('tool-grid-section'); // Remove loader
+
                 if (querySnapshot.empty) {
                     toolGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">No tools available yet. Add some from the admin panel!</p>';
+                    return;
                 }
 
+                toolGrid.innerHTML = ''; // Clear existing content
                 querySnapshot.forEach((toolDoc, index) => {
                     const tool = toolDoc.data();
                     const toolCard = document.createElement('a');
@@ -1868,10 +1910,11 @@
                     `;
                     toolGrid.appendChild(toolCard);
                 });
-            }).catch((error) => {
+            } catch (error) {
                 console.error("Error loading tools:", error);
+                removeLoader('tool-grid-section');
                 toolGrid.innerHTML = '<p class="error" style="text-align: center; color: red; grid-column: 1 / -1;">Error loading tools. Please try again later.</p>';
-            });
+            }
         }
 
         function filterTools() {
@@ -1883,10 +1926,11 @@
             toolCards.forEach(card => {
                 const name = card.querySelector('h3').textContent.toLowerCase();
                 const desc = card.querySelector('.tool-description').textContent.toLowerCase();
-                const toolCategory = card.querySelector('.tool-category').textContent; // Get the text content of the category span
+                const toolCategoryElement = card.querySelector('.tool-category');
+                // Ensure toolCategoryElement exists before accessing textContent
+                const toolCategory = toolCategoryElement ? toolCategoryElement.textContent.trim() : '';
 
                 const matchesSearch = name.includes(searchTerm) || desc.includes(searchTerm);
-                // Check if categoryFilterValue is 'all' or matches the tool's category exactly
                 const matchesCategory = (categoryFilterValue === 'all' || toolCategory === categoryFilterValue);
 
                 if (matchesSearch && matchesCategory) {
@@ -1897,7 +1941,6 @@
             });
         }
 
-
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
         }
@@ -1907,23 +1950,32 @@
             document.getElementById('subscribeModalEmail').focus();
         }
 
-        function subscribe(email) {
-            if (email && validateEmail(email)) {
-                db.collection("subscribers").add({
+        async function subscribe(email) {
+            if (!email || !validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            try {
+                // Check if email already exists
+                const existingSubscribers = await db.collection("subscribers").where("email", "==", email).get();
+                if (!existingSubscribers.empty) {
+                    alert(`The email address ${email} is already subscribed.`);
+                    return;
+                }
+
+                await db.collection("subscribers").add({
                     email: email,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                }).then(() => {
-                    alert(`Thank you for subscribing with ${email}! You'll receive our updates soon.`);
-                    document.getElementById('subscribeEmailFooter').value = ''; // Clear footer input
-                    document.getElementById('subscribeModalEmail').value = ''; // Clear modal input
-                    document.getElementById('subscribeModal').style.display = 'none'; // Close modal
-                    if (currentPage === 'admin') loadSubscribers();
-                }).catch((error) => {
-                    console.error("Error adding subscriber: ", error);
-                    alert("An error occurred. Please try again.");
                 });
-            } else {
-                alert('Please enter a valid email address');
+                alert(`Thank you for subscribing with ${email}! You'll receive our updates soon.`);
+                document.getElementById('subscribeEmailFooter').value = '';
+                document.getElementById('subscribeModalEmail').value = '';
+                document.getElementById('subscribeModal').style.display = 'none';
+                if (currentPage === 'admin') loadSubscribers();
+            } catch (error) {
+                console.error("Error adding subscriber: ", error);
+                alert("An error occurred. Please try again. Check console for details.");
             }
         }
 
@@ -1938,11 +1990,11 @@
             document.getElementById('contactName').focus();
         }
 
-        function submitContactForm(e) {
+        async function submitContactForm(e) {
             e.preventDefault();
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const message = document.getElementById('contactMessage').value;
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const message = document.getElementById('contactMessage').value.trim();
 
             if (!name || !email || !message) {
                 alert("Please fill in all contact form fields.");
@@ -1953,21 +2005,21 @@
                 return;
             }
 
-
-            db.collection("messages").add({
-                name: name,
-                email: email,
-                message: message,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
+            try {
+                await db.collection("messages").add({
+                    name: name,
+                    email: email,
+                    message: message,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
                 alert("Thank you for your message! We'll get back to you soon.");
                 document.getElementById('contactModalForm').reset();
                 document.getElementById('contactModal').style.display = 'none';
                 if (currentPage === 'admin') loadMessages();
-            }).catch((error) => {
+            } catch (error) {
                 console.error("Error sending message: ", error);
-                alert("An error occurred. Please try again.");
-            });
+                alert("An error occurred while sending your message. Please try again. Check console for details.");
+            }
         }
 
         // --- Page Navigation Functions ---
@@ -2032,63 +2084,73 @@
             document.getElementById('subscribeModal').style.display = 'none';
             document.getElementById('contactModal').style.display = 'none';
             currentPage = 'main';
+            // Reload main page data if it was previously hidden
+            loadCategories();
+            loadTools();
         }
 
         // --- Admin Login/Logout Functions ---
-        function loginAdmin(e) {
+        async function loginAdmin(e) {
             e.preventDefault();
             const email = document.getElementById('adminEmail').value;
             const password = document.getElementById('adminPassword').value;
             const errorMessageElement = document.getElementById('login-error-message');
+
+            errorMessageElement.textContent = ''; // Clear previous error messages
 
             if (!email || !password) {
                 errorMessageElement.textContent = 'Please enter both email and password.';
                 return;
             }
 
-            auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    if (user.uid === ADMIN_UID) {
-                        showAdminPanel();
-                    } else {
-                        auth.signOut();
-                        errorMessageElement.textContent = 'Unauthorized access. Please use the correct admin account.';
-                    }
-                })
-                .catch((error) => {
-                    console.error("Login error:", error.code, error.message);
-                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-                        errorMessageElement.textContent = 'Invalid email or password.';
-                    } else if (error.code === 'auth/too-many-requests') {
-                        errorMessageElement.textContent = 'Too many login attempts. Please try again later.';
-                    } else {
-                        errorMessageElement.textContent = 'Login failed: ' + error.message;
-                    }
-                });
+            try {
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                if (user.uid === ADMIN_UID) {
+                    showAdminPanel();
+                } else {
+                    await auth.signOut(); // Sign out unauthorized user
+                    errorMessageElement.textContent = 'Unauthorized access. Please use the correct admin account.';
+                }
+            } catch (error) {
+                console.error("Login error:", error.code, error.message);
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                    errorMessageElement.textContent = 'Invalid email or password.';
+                } else if (error.code === 'auth/too-many-requests') {
+                    errorMessageElement.textContent = 'Too many login attempts. Please try again later.';
+                } else {
+                    errorMessageElement.textContent = 'Login failed: ' + error.message;
+                }
+            }
         }
 
-        function logoutAdmin() {
-            auth.signOut().then(() => {
+        async function logoutAdmin() {
+            try {
+                await auth.signOut();
                 alert('Logged out successfully!');
                 showMainPage();
-                window.location.hash = '';
-            }).catch((error) => {
+                window.location.hash = ''; // Clear hash
+            } catch (error) {
                 console.error("Logout error:", error);
                 alert("An error occurred during logout.");
-            });
+            }
         }
 
         // --- Admin Data Loading & Management Functions ---
-        function loadAdminTools() {
+        async function loadAdminTools() {
             const toolsList = document.getElementById('tools-list');
-            toolsList.innerHTML = '<tr><td colspan="4"><div class="loader"></div></td></tr>';
+            showLoader('tools-list'); // Show loader on the tbody
 
-            db.collection("tools").get().then((querySnapshot) => {
-                toolsList.innerHTML = '';
+            try {
+                const querySnapshot = await db.collection("tools").get();
+                removeLoader('tools-list'); // Remove loader
+
                 if (querySnapshot.empty) {
                     toolsList.innerHTML = '<tr><td colspan="4" style="text-align: center;">No tools found.</td></tr>';
+                    return;
                 }
+
+                toolsList.innerHTML = ''; // Clear existing content
                 querySnapshot.forEach((doc) => {
                     const tool = doc.data();
                     const row = document.createElement('tr');
@@ -2098,26 +2160,32 @@
                         <td>${tool.rating}/5</td>
                         <td>
                             <button class="subscribe-btn" onclick="editTool('${doc.id}')">Edit</button>
-                            <button class="subscribe-btn" style="background: #ef4444" onclick="deleteTool('${doc.id}')">Delete</button>
+                            <button class="subscribe-btn" style="background: #ef4444" onclick="deleteTool('${doc.id}', '${tool.category}')">Delete</button>
                         </td>
                     `;
                     toolsList.appendChild(row);
                 });
-            }).catch((error) => {
+            } catch (error) {
                 console.error("Error loading tools for admin:", error);
+                removeLoader('tools-list');
                 toolsList.innerHTML = '<tr><td colspan="4" style="text-align: center; color: red;">Error loading tools.</td></tr>';
-            });
+            }
         }
 
-        function loadSubscribers() {
+        async function loadSubscribers() {
             const subscribersList = document.getElementById('subscribers-list');
-            subscribersList.innerHTML = '<tr><td colspan="3"><div class="loader"></div></td></tr>';
+            showLoader('subscribers-list');
 
-            db.collection("subscribers").get().then((querySnapshot) => {
-                subscribersList.innerHTML = '';
+            try {
+                const querySnapshot = await db.collection("subscribers").get();
+                removeLoader('subscribers-list');
+
                 if (querySnapshot.empty) {
                     subscribersList.innerHTML = '<tr><td colspan="3" style="text-align: center;">No subscribers found.</td></tr>';
+                    return;
                 }
+
+                subscribersList.innerHTML = '';
                 querySnapshot.forEach((doc) => {
                     const subscriber = doc.data();
                     const date = subscriber.timestamp ? new Date(subscriber.timestamp.seconds * 1000).toLocaleDateString() : 'N/A';
@@ -2132,35 +2200,40 @@
                     `;
                     subscribersList.appendChild(row);
                 });
-            }).catch((error) => {
+            } catch (error) {
                 console.error("Error loading subscribers:", error);
+                removeLoader('subscribers-list');
                 subscribersList.innerHTML = '<tr><td colspan="3" style="text-align: center; color: red;">Error loading subscribers.</td></tr>';
-            });
-        }
-
-        function deleteSubscriber(id) {
-            if (confirm('Are you sure you want to delete this subscriber?')) {
-                db.collection("subscribers").doc(id).delete()
-                    .then(() => {
-                        alert('Subscriber deleted successfully!');
-                        loadSubscribers();
-                    })
-                    .catch((error) => {
-                        console.error("Error deleting subscriber: ", error);
-                        alert("An error occurred. Please try again.");
-                    });
             }
         }
 
-        function loadMessages() {
-            const messagesList = document.getElementById('messages-list');
-            messagesList.innerHTML = '<tr><td colspan="5"><div class="loader"></div></td></tr>';
+        async function deleteSubscriber(id) {
+            if (confirm('Are you sure you want to delete this subscriber?')) {
+                try {
+                    await db.collection("subscribers").doc(id).delete();
+                    alert('Subscriber deleted successfully!');
+                    loadSubscribers();
+                } catch (error) {
+                    console.error("Error deleting subscriber: ", error);
+                    alert("An error occurred. Please try again.");
+                }
+            }
+        }
 
-            db.collection("messages").get().then((querySnapshot) => {
-                messagesList.innerHTML = '';
+        async function loadMessages() {
+            const messagesList = document.getElementById('messages-list');
+            showLoader('messages-list');
+
+            try {
+                const querySnapshot = await db.collection("messages").get();
+                removeLoader('messages-list');
+
                 if (querySnapshot.empty) {
                     messagesList.innerHTML = '<tr><td colspan="5" style="text-align: center;">No messages found.</td></tr>';
+                    return;
                 }
+
+                messagesList.innerHTML = '';
                 querySnapshot.forEach((doc) => {
                     const message = doc.data();
                     const date = message.timestamp ? new Date(message.timestamp.seconds * 1000).toLocaleDateString() : 'N/A';
@@ -2178,42 +2251,42 @@
                     `;
                     messagesList.appendChild(row);
                 });
-            }).catch((error) => {
+            } catch (error) {
                 console.error("Error loading messages:", error);
+                removeLoader('messages-list');
                 messagesList.innerHTML = '<tr><td colspan="5" style="text-align: center; color: red;">Error loading messages.</td></tr>';
-            });
+            }
         }
 
-        function viewMessage(id) {
-            db.collection("messages").doc(id).get().then((doc) => {
+        async function viewMessage(id) {
+            try {
+                const doc = await db.collection("messages").doc(id).get();
                 if (doc.exists) {
                     const msg = doc.data();
                     alert(`Message from: ${msg.name}\nEmail: ${msg.email}\nMessage:\n${msg.message}\nDate: ${msg.timestamp ? new Date(msg.timestamp.seconds * 1000).toLocaleDateString() : 'N/A'}`);
                 } else {
                     alert("Message not found.");
                 }
-            }).catch((error) => {
+            } catch (error) {
                 console.error("Error getting message:", error);
                 alert("Could not retrieve message details.");
-            });
-        }
-
-        function deleteMessage(id) {
-            if (confirm('Are you sure you want to delete this message?')) {
-                db.collection("messages").doc(id).delete()
-                    .then(() => {
-                        alert('Message deleted successfully!');
-                        loadMessages();
-                    })
-                    .catch((error) => {
-                        console.error("Error deleting message: ", error);
-                        alert("An error occurred. Please try again.");
-                    });
             }
         }
 
+        async function deleteMessage(id) {
+            if (confirm('Are you sure you want to delete this message?')) {
+                try {
+                    await db.collection("messages").doc(id).delete();
+                    alert('Message deleted successfully!');
+                    loadMessages();
+                } catch (error) {
+                    console.error("Error deleting message: ", error);
+                    alert("An error occurred. Please try again.");
+                }
+            }
+        }
 
-        function addNewTool(e) {
+        async function addNewTool(e) {
             e.preventDefault();
 
             const tool = {
@@ -2232,96 +2305,82 @@
                 return;
             }
 
-            db.collection("tools").add(tool)
-                .then(() => {
-                    alert('Tool added successfully!');
-                    document.getElementById('addToolForm').reset();
-                    loadTools(); // Reload tools on homepage
-                    loadAdminTools(); // Reload tools in admin panel
+            try {
+                await db.collection("tools").add(tool);
+                alert('Tool added successfully!');
+                document.getElementById('addToolForm').reset();
+                loadTools();
+                loadAdminTools();
 
-                    // Update tool count in categories
-                    const categoryRef = db.collection("categories").where("name", "==", tool.category);
-                    categoryRef.get().then(querySnapshot => {
-                        if (!querySnapshot.empty) {
-                            querySnapshot.forEach(doc => {
-                                const currentCount = doc.data().toolCount || 0;
-                                db.collection("categories").doc(doc.id).update({
-                                    toolCount: currentCount + 1
-                                }).then(() => {
-                                    loadCategories(); // Reload categories on homepage
-                                    loadCategoriesForAdmin(); // Reload categories in admin panel
-                                });
-                            });
-                        }
+                // Update tool count in categories
+                const categorySnapshot = await db.collection("categories").where("name", "==", tool.category).get();
+                if (!categorySnapshot.empty) {
+                    const categoryDoc = categorySnapshot.docs[0];
+                    const currentCount = categoryDoc.data().toolCount || 0;
+                    await db.collection("categories").doc(categoryDoc.id).update({
+                        toolCount: currentCount + 1
                     });
-                })
-                .catch((error) => {
-                    console.error("Error adding tool: ", error);
-                    alert("An error occurred. Please try again.");
-                });
-        }
-
-        // Dummy function for editTool - In a real app, this would populate a form for editing
-        function editTool(id) {
-            alert(`Editing tool with ID: ${id}`);
-            // Example: Fetch tool data and populate a modal form
-            // db.collection("tools").doc(id).get().then(doc => {
-            //    if (doc.exists) {
-            //        const toolData = doc.data();
-            //        // Populate an edit modal/form with toolData
-            //        // And then update the tool using db.collection("tools").doc(id).update(...)
-            //    }
-            // });
-        }
-
-        function deleteTool(id) {
-            if (confirm('Are you sure you want to delete this tool?')) {
-                db.collection("tools").doc(id).get().then(docSnapshot => {
-                    if (docSnapshot.exists) {
-                        const toolCategory = docSnapshot.data().category;
-                        db.collection("tools").doc(id).delete()
-                            .then(() => {
-                                alert('Tool deleted successfully!');
-                                loadTools(); // Reload tools on homepage
-                                loadAdminTools(); // Reload tools in admin panel
-
-                                if (toolCategory) {
-                                    const categoryRef = db.collection("categories").where("name", "==", toolCategory);
-                                    categoryRef.get().then(querySnapshot => {
-                                        if (!querySnapshot.empty) {
-                                            querySnapshot.forEach(doc => {
-                                                const currentCount = doc.data().toolCount || 0;
-                                                if (currentCount > 0) {
-                                                    db.collection("categories").doc(doc.id).update({
-                                                        toolCount: currentCount - 1
-                                                    }).then(() => {
-                                                        loadCategories(); // Reload categories on homepage
-                                                        loadCategoriesForAdmin(); // Reload categories in admin panel
-                                                    });
-                                                }
-                                            });
-                                        }
-                                    });
-                                }
-                            })
-                            .catch((error) => {
-                                console.error("Error deleting tool: ", error);
-                                alert("An error occurred. Please try again.");
-                            });
-                    }
-                });
+                    loadCategories();
+                    loadCategoriesForAdmin();
+                }
+            } catch (error) {
+                console.error("Error adding tool: ", error);
+                alert("An error occurred while adding the tool. Please try again. Check console for details.");
             }
         }
 
-        function loadCategoriesForAdmin() {
-            const categoriesListAdmin = document.getElementById('categories-list-admin');
-            categoriesListAdmin.innerHTML = '<tr><td colspan="4"><div class="loader"></div></td></tr>';
+        function editTool(id) {
+            alert(`Editing tool with ID: ${id}. This feature requires more complex UI/backend logic (e.g., a modal form to populate and submit updates).`);
+            // To implement this fully:
+            // 1. Fetch the tool data by ID: db.collection("tools").doc(id).get()
+            // 2. Populate an edit form (perhaps a new modal) with the fetched data.
+            // 3. Add a submit handler to that form which calls db.collection("tools").doc(id).update(...)
+            // 4. Reload tools after update.
+        }
 
-            db.collection("categories").get().then((querySnapshot) => {
-                categoriesListAdmin.innerHTML = '';
+        async function deleteTool(id, categoryName) {
+            if (confirm('Are you sure you want to delete this tool?')) {
+                try {
+                    await db.collection("tools").doc(id).delete();
+                    alert('Tool deleted successfully!');
+                    loadTools();
+                    loadAdminTools();
+
+                    if (categoryName) {
+                        const categorySnapshot = await db.collection("categories").where("name", "==", categoryName).get();
+                        if (!categorySnapshot.empty) {
+                            const categoryDoc = categorySnapshot.docs[0];
+                            const currentCount = categoryDoc.data().toolCount || 0;
+                            if (currentCount > 0) {
+                                await db.collection("categories").doc(categoryDoc.id).update({
+                                    toolCount: currentCount - 1
+                                });
+                                loadCategories();
+                                loadCategoriesForAdmin();
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error("Error deleting tool: ", error);
+                    alert("An error occurred while deleting the tool. Please try again. Check console for details.");
+                }
+            }
+        }
+
+        async function loadCategoriesForAdmin() {
+            const categoriesListAdmin = document.getElementById('categories-list-admin');
+            showLoader('categories-list-admin');
+
+            try {
+                const querySnapshot = await db.collection("categories").get();
+                removeLoader('categories-list-admin');
+
                 if (querySnapshot.empty) {
                     categoriesListAdmin.innerHTML = '<tr><td colspan="4" style="text-align: center;">No categories found.</td></tr>';
+                    return;
                 }
+
+                categoriesListAdmin.innerHTML = '';
                 querySnapshot.forEach((doc) => {
                     const category = doc.data();
                     const row = document.createElement('tr');
@@ -2335,13 +2394,14 @@
                     `;
                     categoriesListAdmin.appendChild(row);
                 });
-            }).catch((error) => {
+            } catch (error) {
                 console.error("Error loading categories for admin:", error);
+                removeLoader('categories-list-admin');
                 categoriesListAdmin.innerHTML = '<tr><td colspan="4" style="text-align: center; color: red;">Error loading categories.</td></tr>';
-            });
+            }
         }
 
-        function addNewCategory(e) {
+        async function addNewCategory(e) {
             e.preventDefault();
             const categoryName = document.getElementById('categoryName').value.trim();
             const categoryIconClass = document.getElementById('categoryIconClass').value.trim();
@@ -2351,63 +2411,55 @@
                 return;
             }
 
-            // Check if category already exists
-            db.collection("categories").where("name", "==", categoryName).get()
-                .then(snapshot => {
-                    if (!snapshot.empty) {
-                        alert("Category with this name already exists!");
-                        return;
-                    }
+            try {
+                // Check if category already exists
+                const existingCategory = await db.collection("categories").where("name", "==", categoryName).get();
+                if (!existingCategory.empty) {
+                    alert("Category with this name already exists!");
+                    return;
+                }
 
-                    db.collection("categories").add({
-                        name: categoryName,
-                        icon: categoryIconClass,
-                        toolCount: 0, // Initialize toolCount for new category
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    })
-                    .then(() => {
-                        alert('Category added successfully!');
-                        document.getElementById('addCategoryForm').reset();
-                        loadCategories(); // Reload categories on homepage
-                        loadCategoriesForAdmin(); // Reload categories in admin panel
-                        updateCategoryFilterDropdown(); // Update dropdowns in both places
-                        updateToolCategoryDropdown(); // Update dropdown for add tool form
-                    })
-                    .catch((error) => {
-                        console.error("Error adding category: ", error);
-                        alert("An error occurred. Please try again.");
-                    });
-                })
-                .catch(error => {
-                    console.error("Error checking category existence:", error);
-                    alert("An error occurred while checking category. Please try again.");
+                await db.collection("categories").add({
+                    name: categoryName,
+                    icon: categoryIconClass,
+                    toolCount: 0,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
+                alert('Category added successfully!');
+                document.getElementById('addCategoryForm').reset();
+                loadCategories();
+                loadCategoriesForAdmin();
+                updateCategoryFilterDropdown();
+                updateToolCategoryDropdown();
+            } catch (error) {
+                console.error("Error adding category: ", error);
+                alert("An error occurred while adding the category. Please try again. Check console for details.");
+            }
         }
 
-        function deleteCategory(id) {
+        async function deleteCategory(id) {
             if (confirm('Are you sure you want to delete this category? Note: Tools associated with this category will remain, but their category will no longer be valid or linked properly unless updated. You should update tools using this category before deleting.')) {
-                db.collection("categories").doc(id).delete()
-                    .then(() => {
-                        alert('Category deleted successfully!');
-                        loadCategories(); // Reload categories on homepage
-                        loadCategoriesForAdmin(); // Reload categories in admin panel
-                        updateCategoryFilterDropdown(); // Update dropdowns
-                        updateToolCategoryDropdown(); // Update dropdown for add tool form
-                    })
-                    .catch((error) => {
-                        console.error("Error deleting category: ", error);
-                        alert("An error occurred. Please try again.");
-                    });
+                try {
+                    await db.collection("categories").doc(id).delete();
+                    alert('Category deleted successfully!');
+                    loadCategories();
+                    loadCategoriesForAdmin();
+                    updateCategoryFilterDropdown();
+                    updateToolCategoryDropdown();
+                } catch (error) {
+                    console.error("Error deleting category: ", error);
+                    alert("An error occurred while deleting the category. Please try again. Check console for details.");
+                }
             }
         }
 
         // Updates the category filter dropdown on the main page
-        function updateCategoryFilterDropdown() {
+        async function updateCategoryFilterDropdown() {
             const categoryFilter = document.getElementById('categoryFilter');
-            // Clear existing options, but keep the "All Categories" option
-            categoryFilter.innerHTML = '<option value="all">All Categories</option>';
+            categoryFilter.innerHTML = '<option value="all">All Categories</option>'; // Keep default option
 
-            db.collection("categories").get().then((querySnapshot) => {
+            try {
+                const querySnapshot = await db.collection("categories").get();
                 querySnapshot.forEach((doc) => {
                     const category = doc.data();
                     const option = document.createElement('option');
@@ -2415,18 +2467,18 @@
                     option.textContent = category.name;
                     categoryFilter.appendChild(option);
                 });
-            }).catch((error) => {
+            } catch (error) {
                 console.error("Error updating category filter dropdown:", error);
-            });
+            }
         }
 
         // Updates the category dropdown in the "Add New Tool" form in the admin panel
-        function updateToolCategoryDropdown() {
+        async function updateToolCategoryDropdown() {
             const toolCategorySelect = document.getElementById('toolCategory');
-            // Clear existing options, but keep the "Select Category" option
-            toolCategorySelect.innerHTML = '<option value="">Select Category</option>';
+            toolCategorySelect.innerHTML = '<option value="">Select Category</option>'; // Keep default option
 
-            db.collection("categories").get().then((querySnapshot) => {
+            try {
+                const querySnapshot = await db.collection("categories").get();
                 querySnapshot.forEach((doc) => {
                     const category = doc.data();
                     const option = document.createElement('option');
@@ -2434,10 +2486,10 @@
                     option.textContent = category.name;
                     toolCategorySelect.appendChild(option);
                 });
-            }).catch((error) => {
+            } catch (error) {
                 console.error("Error updating tool category dropdown:", error);
-            });
+            }
         }
     </script>
 </body>
-                    </html>
+    </html>
